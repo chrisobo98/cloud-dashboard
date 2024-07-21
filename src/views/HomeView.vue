@@ -10,13 +10,14 @@
     <!-- Row -->
     <div class="col-12 col-xxl-6">
       <div class="row align-items-center g-4">
-        <AddPortComponent />
+        <AddPort @port-added="handlePortAdded" />
         <PortChart />
       </div>
     </div>
     <!-- Row -->
     <div class="col-12 col-xxl-6">
       <div class="row align-items-center g-4">
+        <PortList :ports="ports" />
         <PortMap />
         <TotalSpend />
       </div>
@@ -26,21 +27,19 @@
   </div>
 </template>
 
-<script>
-import AddPortComponent from '@/components/AddPortComponent.vue'
+<script setup>
+import { ref } from 'vue'
+import AddPort from '@/components/AddPort.vue'
+import PortList from '@/components/PortList.vue'
 import PortChart from '@/components/PortChart.vue'
 import PortMap from '@/components/PortMap.vue'
 import SessionsTable from '@/components/SessionsTable.vue'
 import TotalSpend from '@/components/TotalSpend.vue'
 
-export default {
-  components: {
-    AddPortComponent,
-    PortChart,
-    PortMap,
-    SessionsTable,
-    TotalSpend
-  }
+const ports = ref([])
+
+const handlePortAdded = (newPorts) => {
+  ports.value = newPorts
 }
 </script>
 
