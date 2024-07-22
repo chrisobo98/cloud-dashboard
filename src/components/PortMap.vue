@@ -28,7 +28,8 @@ const ports: Port[] = [
 const map = ref<mapboxgl.Map | null>(null)
 
 onMounted(() => {
-  mapboxgl.accessToken = import.meta.env.VITE_MAPBOX_API_KEY as string
+  mapboxgl.accessToken =
+    'pk.eyJ1IjoicHJvc2lyaXM5OCIsImEiOiJjbHl1YjFneDMwN21oMmlweXdyMmc0eXRzIn0.lRt0q3baCcyEdzZMnC6IMw'
 
   map.value = new mapboxgl.Map({
     container: 'map',
