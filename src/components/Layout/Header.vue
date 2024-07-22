@@ -16,15 +16,27 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <RouterLink class="nav-link" to="/">Home</RouterLink>
+            <a
+              class="nav-link text-white"
+              target="_blank"
+              href="https://www.linkedin.com/in/christopher-bermudez-ortiz/"
+              >LinkedIn</a
+            >
           </li>
           <li class="nav-item">
-            <RouterLink class="nav-link" to="/about">About</RouterLink>
+            <a
+              class="nav-link text-white"
+              target="_blank"
+              href="https://christopherbermudez.com/resume"
+              >Resume</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" target="_blank" href="https://github.com/chrisobo98"
+              >Github</a
+            >
           </li>
         </ul>
-        <form class="d-flex">
-          <button class="btn btn-outline-success" type="submit">Search</button>
-        </form>
       </div>
     </div>
   </nav>

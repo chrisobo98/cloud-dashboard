@@ -1,16 +1,28 @@
 <template>
-  <BaseCard>
+  <BaseCard :heightClass="'h-40'">
     <template #header>Saved Ports</template>
-    <div v-if="ports.length">
-      <ul>
-        <li v-for="port in ports" :key="port.id">
-          <strong>{{ port.provider.name }} - {{ port.provider.location }}</strong
-          ><br />
-          Port Name: {{ port.portName }}<br />
-          Port Speed: {{ port.portSpeed }}<br />
-          Term: {{ port.term }}<br />
-          <button @click="editPort(port)" class="btn btn-warning btn-sm mt-2">Edit</button>
-          <button @click="confirmDelete(port)" class="btn btn-danger btn-sm mt-2">Delete</button>
+    <div v-if="ports.length" class="ports-container">
+      <ul class="d-flex flex-row overflow-auto">
+        <li
+          v-for="port in ports"
+          :key="port.id"
+          class="port-item d-flex align-items-start border p-2 m-2 bg-white rounded"
+        >
+          <img
+            :src="getProviderLogo(port.provider.name)"
+            :alt="`${port.provider.name} Logo`"
+            height="40"
+            class="provider-logo me-3"
+          />
+          <div>
+            <strong>{{ port.provider.name }} - {{ port.provider.location }}</strong
+            ><br />
+            Port Name: {{ port.portName }}<br />
+            Port Speed: {{ port.portSpeed }}<br />
+            Term: {{ port.term }}<br />
+            <button @click="editPort(port)" class="btn btn-warning btn-sm mt-2">Edit</button>
+            <button @click="confirmDelete(port)" class="btn btn-danger btn-sm mt-2">Delete</button>
+          </div>
         </li>
       </ul>
     </div>
@@ -85,6 +97,11 @@ const updatePort = (updatedPort: Port) => {
   modal?.hide()
 }
 
+const getProviderLogo = (providerName: string) => {
+  const formattedName = providerName.split(' ')[0].toLowerCase() // Extract and lowercase the first word
+  console.log(formattedName)
+  return `/src/assets/logos/${formattedName}-logo.jpg`
+}
 onMounted(loadPorts)
 </script>
 
@@ -94,7 +111,21 @@ ul {
   padding: 0;
 }
 
-li {
-  margin-bottom: 1rem;
+.horizontal-list {
+  display: flex;
+  overflow-x: auto;
+  padding: 0;
+  margin: 0;
+}
+
+.port-item {
+  flex: 0 0 auto;
+  margin-right: 1rem;
+}
+
+.ports-container {
+  max-height: 300px; /* Set your desired max height */
+  overflow-y: auto; /* Enable vertical scrolling */
+  padding: 0.5rem;
 }
 </style>
